@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int numOfWays(int n) {
+        // We have mod with a value
+        int mod = 1e9 + 7;
+        // We use a vector for storing number of ways to paint for n grid
+        vector<long long int> a(n,6), b(n,6);
+        for(int i = 1; i<n; i++){
+            a[i] = (2*a[i-1] + 2*b[i-1]) % mod;
+            b[i] = (2*a[i-1] + 3*b[i-1]) % mod;
+        }
+        return (a[n-1] + b[n-1]) % mod;
+    }
+};
